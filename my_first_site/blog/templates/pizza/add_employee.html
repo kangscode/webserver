@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>새로운 사원 추가하기</title>
+</head>
+<body>
+
+<h3>새로운 사원의 정보를 입력하세요</h3>
+
+{# django에서 post방식으로 전송할 때는 csrf_token이라는 탬플릿 태그가 필요하다 #}
+<form action="/blog/pizza/employee/create" method="POST"> {% csrf_token %}
+  이름: <input name="name" type="text"> <br>
+  월급: <input name="salary" type="number" step="100"> <br>
+  전화번호: <input name="tel" type="text"> <br>
+  부서:
+  <select name="dept" id="">
+      {% for department in departments %}
+        <option value="{{ department.id }}">{{ department.name }}</option>
+      {% endfor %}
+  </select> <br>
+    <input type="submit">
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>블로그의 인덱스 페이지입니다!</title>
+</head>
+<body>
+
+<h1>템플릿으로 작성된 제목입니다!</h1>
+
+<p>
+   views.py에서 우리가 여기에 미리 작성한 템플릿을 Http응답으로 만들어서
+   클라이언트에게 응답하게 됩니다!
+</p>
+
+<h1>템플릿의 세 번째 파라미터로 전달받은 context들</h1>
+
+<ul>
+    <li>color: {{ color }}</li>
+    <li>name: {{ name }}</li>
+    <li>qty: {{ qty }}</li>
+</ul>
+
+<h3>수량이 4개 이상인 경우 활성화되는 버튼</h3>
+
+<div style="border: solid black 1px; padding: 5px;">
+    개별포장<input type="radio" name="package">
+    종이봉투<input type="radio" name="package">
+    {% if qty >= 4 %}
+        박스<input type="radio" name="package">
+    {% else %}
+        박스<input type="radio" name="package" disabled>
+    {% endif %}
+    </div>
+
+<h3>for문 사용하기</h3>
+
+<ul>
+    {% for menu in stock %}
+        {% if forloop.last %}
+            <li style="border: solid blue 3px; border-radius: 3px; margin: 2px;">
+            {{ menu }} ({{ forloop.revcounter0 }}번째 반복입니다.)
+            </li>
+        {% else %}
+            <li style="border: solid black 3px; border-radius: 3px; margin: 2px;">
+            {{ menu }} ({{ forloop.revcounter0 }}번째 반복입니다.)
+            </li>
+        {% endif %}
+    {% empty %}
+        <li>죄송합니다. 재고가 모두 소진되었습니다.</li>
+    {% endfor %}
+</ul>
+
+<hr>
+<hr>
+<hr>
+
+ <h1>재즈 동아리 신청 완료</h1>
+
+
+    신청자: {{ name }} <br>
+
+    {% if major == 'major1' %}
+        학부(과): '경영학부' <br>
+    {% elif major == 'major2' %}
+        학부(과): '공학계열' <br>
+    {% elif major == 'major3' %}
+        학부(과): '소프트웨어학과' <br>
+    {% elif major == 'major4' %}
+        학부(과): '자유전공학부' <br>
+    {% elif major == 'major5' %}
+        학부(과): '항공교통물류학부' <br>
+    {% elif major == 'major6' %}
+        학부(과): '항공우주 및 기계공학부' <br>
+    {% elif major == 'major7' %}
+        학부(과): '항공운항학과' <br>
+    {% elif major == 'major8' %}
+        학부(과): '항공전자정보공학부' <br>
+    {% elif major == 'major9' %}
+        학부(과): '항공재료공학과' <br>
+    {% endif %}
+
+    {% if level == 'low' %}
+         재즈를 접한 정도: '아예 없어요' <br>
+    {% elif level == 'medium' %}
+         재즈를 접한 정도: '조금 알아요' <br>
+    {% elif level == 'high' %}
+         재즈를 접한 정도: '기똥차요' <br>
+    {% endif %}
+
+
+
+
+
+    다룰 수 있는 악기: {{instrument}} <br>
+    배우고 싶은 악기: {{study}} <br>
+    문의사항: {{question}} <br>
+
+
+
+
+
+
+</body>
+</html>
